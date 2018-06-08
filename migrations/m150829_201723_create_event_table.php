@@ -1,6 +1,5 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
 
 class m150829_201723_create_event_table extends Migration
@@ -47,178 +46,78 @@ class m150829_201723_create_event_table extends Migration
         $this->addForeignKey('fk_event_translation_', '{{%eg_event_translation}}', 'event_id', '{{%eg_event}}', 'id', 'RESTRICT', 'CASCADE');
 
         $this->insert('{{%eg_event_category}}', [
+			'id' => 1,
             'name' => 'عمومی',
+			'status' => 1,
         ]);
         $this->insert('{{%eg_event_category_translation}}', [
             'cat_id' => 1,
             'language' => 'fa-IR',
             'title' => 'عمومی',
         ]);
+        $this->insert('{{%eg_event_category_translation}}', [
+            'cat_id' => 1,
+            'language' => 'en-US',
+            'title' => 'public',
+        ]);
         $this->insert('{{%eg_event}}', [
+			'id' => 1,
             'category_id' => 1,
             'image' => 'event-1.png',
-            'begin_time' => 1467629406,
-            'end_time' => 1467629406,
-            'creation_time' => 1467629406,
-            'update_time' => 1467629406,
+            'begin_time' => date('Y-m-d H:i:s',time() + 7200),
+            'end_time' => date('Y-m-d H:i:s',time() + 115200),
+            'creation_time' => date('Y-m-d H:i:s',time()),
+            'update_time' => date('Y-m-d H:i:s',time()),
             'author_id' => 1,
             'status' => 1,
         ]);
         $this->insert('{{%eg_event}}', [
+			'id' => 2,
             'category_id' => 1,
             'image' => 'event-2.png',
-            'begin_time' => 1467629406,
-            'end_time' => 1467629406,
-            'creation_time' => 1467629406,
-            'update_time' => 1467629406,
+            'begin_time' => date('Y-m-d H:i:s',time() + 14400),
+            'end_time' => date('Y-m-d H:i:s',time() + 115200),
+            'creation_time' => date('Y-m-d H:i:s',time()),
+            'update_time' => date('Y-m-d H:i:s',time()),
             'author_id' => 1,
             'status' => 1,
         ]);
         $this->insert('{{%eg_event}}', [
+			'id' => 3,
             'category_id' => 1,
             'image' => 'event-3.png',
-            'begin_time' => 1467629406,
-            'end_time' => 1467629406,
-            'creation_time' => 1467629406,
-            'update_time' => 1467629406,
+            'begin_time' => date('Y-m-d H:i:s',time() + 21600),
+            'end_time' => date('Y-m-d H:i:s',time() + 136800),
+            'creation_time' => date('Y-m-d H:i:s',time()),
+            'update_time' => date('Y-m-d H:i:s',time()),
             'author_id' => 1,
             'status' => 1,
         ]);
         $this->insert('{{%eg_event_translation}}', [
             'event_id' => 1,
             'language' => 'fa-IR',
-            'title' => 'بروزرسانی سایت کلید',
-            'subtitle' => 'سایت کلید به زودی بروز رسانی خواهد شد.',
-            'description' => '<p>.بروزرسانی سایت کلید در اولین روز&nbsp;هفته آینده انجام خواهد شد</p>',
+            'title' => 'ساخت اولین نسخه eg-cms',
+            'subtitle' => 'اولین نسخه eg-cms با داشتن پلاگین های متعدد ساخته و در گیت هاب عرضه شد.',
+            'description' => '<p>سورس کد برنامه در <a href="https://github.com/ElephantsGroup/eg-cms">گیت هاب</a> موجود است. این بسته بر پایه ی Yii2 ساخته شده است. اطلاعات بیشتر را می توانید در <a href="http://elephantsgroup.com">وب سایت ما</a> بیابید.</p>',
         ]);
         $this->insert('{{%eg_event_translation}}', [
             'event_id' => 2,
             'language' => 'fa-IR',
-            'title' => 'بروزرسانی سایت کلید',
-            'subtitle' => 'سایت کلید به زودی بروز رسانی خواهد شد.',
-            'description' => '<p>.بروزرسانی سایت کلید در اولین روز&nbsp;هفته آینده انجام خواهد شد</p>',
+            'title' => 'ساخت اولین نسخه eg-cms',
+            'subtitle' => 'اولین نسخه eg-cms با داشتن پلاگین های متعدد ساخته و در گیت هاب عرضه شد.',
+            'description' => '<p>سورس کد برنامه در <a href="https://github.com/ElephantsGroup/eg-cms">گیت هاب</a> موجود است. این بسته بر پایه ی Yii2 ساخته شده است. اطلاعات بیشتر را می توانید در <a href="http://elephantsgroup.com">وب سایت ما</a> بیابید.</p>',
         ]);
         $this->insert('{{%eg_event_translation}}', [
             'event_id' => 3,
             'language' => 'fa-IR',
-            'title' => 'بروزرسانی سایت کلید',
-            'subtitle' => 'سایت کلید به زودی بروز رسانی خواهد شد.',
-            'description' => '<p>.بروزرسانی سایت کلید در اولین روز&nbsp;هفته آینده انجام خواهد شد</p>',
-        ]);
-
-        $this->insert('{{%auth_item}}', [
-            'name' => '/event/admin/*',
-            'type' => 2,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item}}', [
-            'name' => '/event/category-admin/*',
-            'type' => 2,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item}}', [
-            'name' => '/event/translation/*',
-            'type' => 2,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item}}', [
-            'name' => '/event/category-translation/*',
-            'type' => 2,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item}}', [
-            'name' => 'event_management',
-            'type' => 2,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/admin/*',
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/category-admin/*',
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/category-translation/*',
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/translation/*',
-        ]);
-        $this->insert('{{%auth_item}}', [
-            'name' => 'event_manager',
-            'type' => 1,
-            'created_at' => 1467629406,
-            'updated_at' => 1467629406
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'event_manager',
-            'child' => 'event_management',
-        ]);
-        $this->insert('{{%auth_item_child}}', [
-            'parent' => 'super_admin',
-            'child' => 'event_manager',
+            'title' => 'ساخت اولین نسخه eg-cms',
+            'subtitle' => 'اولین نسخه eg-cms با داشتن پلاگین های متعدد ساخته و در گیت هاب عرضه شد.',
+            'description' => '<p>سورس کد برنامه در <a href="https://github.com/ElephantsGroup/eg-cms">گیت هاب</a> موجود است. این بسته بر پایه ی Yii2 ساخته شده است. اطلاعات بیشتر را می توانید در <a href="http://elephantsgroup.com">وب سایت ما</a> بیابید.</p>',
         ]);
     }
 
     public function safeDown()
     {
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'super_admin',
-            'child' => 'event_manager',
-        ]);
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'event_manager',
-            'child' => 'event_management',
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => 'event_manager',
-            'type' => 1,
-        ]);
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/translation/*',
-        ]);
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/category-translation/*',
-        ]);
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/category-admin/*',
-        ]);
-        $this->delete('{{%auth_item_child}}', [
-            'parent' => 'event_management',
-            'child' => '/event/admin/*',
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => 'event_management',
-            'type' => 2,
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => '/event/category-translation/*',
-            'type' => 2,
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => '/event/translation/*',
-            'type' => 2,
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => '/event/category-admin/*',
-            'type' => 2,
-        ]);
-        $this->delete('{{%auth_item}}', [
-            'name' => '/event/admin/*',
-            'type' => 2,
-        ]);
-
         $this->dropForeignKey('fk_event_translation_', '{{%eg_event_translation}}');
         $this->dropTable('{{%eg_event_translation}}');
         $this->dropForeignKey('fk_eg_event_category', '{{%eg_event}}');
