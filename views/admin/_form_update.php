@@ -2,6 +2,7 @@
 use elephantsGroup\event\models\EventCategory;
 use elephantsGroup\event\models\EventCategoryTranslation;
 use elephantsGroup\event\models\Event;
+use elephantsGroup\jDate;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
