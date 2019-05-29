@@ -7,7 +7,7 @@ use elephantsGroup\jDate;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use mihaildev\ckeditor\CKEditor;
+use backend\widgets\CKEditor;
 use kartik\time\TimePicker;
 
 /* @var $this yii\web\View */
@@ -48,29 +48,29 @@ $module = \Yii::$app->getModule('event');
 	<?= $form->field($model, 'end_time_time')->label('')->widget(TimePicker::className(), ['pluginOptions' => ['showSeconds' => true]]) ?>
 
     <?= $form->field($model, 'creation_time')->widget(jDate\DatePicker::className()) ?>
-	
+
     <?= $form->field($model, 'update_time')->widget(jDate\DatePicker::className()) ?>
 
     <?= $form->field($model, 'status')->dropDownList(Event::getStatus(), ['prompt' => $module_base::t('Select Status ...')]) ?>
 
     <?= $form->field($model, 'author_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'username')) ?>
-	
+
 	<?= $form->field($model, 'views')->textInput() ?>
-	
+
 	<?= $form->field($translation, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($translation, 'subtitle')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($translation, 'description')->widget(CKEditor::className(),[
-		'editorOptions' => [
-			'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-			'inline' => false, //по умолчанию false
-			'filebrowserImageBrowseUrl' => Yii::getAlias('@web') . '/kcfinder/browse.php?type=images',
-			'filebrowserImageUploadUrl' => Yii::getAlias('@web') . '/kcfinder/upload.php?type=images',
-			'filebrowserBrowseUrl' => Yii::getAlias('@web') . '/kcfinder/browse.php?type=files',
-			'filebrowserUploadUrl' => Yii::getAlias('@web') . '/kcfinder/upload.php?type=files',
-		],
-	]); 
+		// 'editorOptions' => [
+		// 	'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+		// 	'inline' => false, //по умолчанию false
+		// 	'filebrowserImageBrowseUrl' => Yii::getAlias('@web') . '/kcfinder/browse.php?type=images',
+		// 	'filebrowserImageUploadUrl' => Yii::getAlias('@web') . '/kcfinder/upload.php?type=images',
+		// 	'filebrowserBrowseUrl' => Yii::getAlias('@web') . '/kcfinder/browse.php?type=files',
+		// 	'filebrowserUploadUrl' => Yii::getAlias('@web') . '/kcfinder/upload.php?type=files',
+		// ],
+	]);
 	?>
 
     <div class="form-group">

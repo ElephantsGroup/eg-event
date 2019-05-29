@@ -23,7 +23,8 @@
         "elephantsgroup/eg-comment": "~1",
         "elephantsgroup/eg-jdf": "~1",
 		"elephantsgroup/eg-jdate": "~1",
-		"mihaildev/yii2-ckeditor": "*"
+        "2amigos/yii2-ckeditor-widget": "^1.0@dev",
+        "elephantsGroup/eg-kcfinder": "dev-master"
     },
     "config": {
         "process-timeout": 1500,
