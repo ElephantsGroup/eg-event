@@ -15,7 +15,7 @@ $module = \Yii::$app->getModule('event');
 </header>
 
 <div class="event-default-index">
-	<?php 
+	<?php
 //		echo LastEvent::widget(['title'=>Yii::t('app', 'Event'), 'subtitle'=>' ', 'show_archive_button'=>true, 'archive_button_text'=>Yii::t('app', 'َEvent Archive')]);
 //		echo DateList::widget();
 	?>
@@ -43,4 +43,7 @@ $module = \Yii::$app->getModule('event');
 		</div><!-- /.container -->
 	</section>
 </div>
-
+<?php echo \yii\widgets\LinkPager::widget([
+    'pagination' => $pages,
+]);
+?>

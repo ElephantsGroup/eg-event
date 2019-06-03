@@ -4,6 +4,7 @@ namespace elephantsGroup\event\controllers;
 
 use Yii;
 //use yii\web\Controller;
+use yii\data\Pagination;
 use elephantsGroup\event\models\Event;
 use elephantsGroup\event\models\EventTranslation;
 use elephantsGroup\stat\models\Stat;
@@ -30,8 +31,8 @@ class DefaultController extends EGController
 				//$date->setTimestamp();
 				$date->setTimezone(new \DateTimezone('Iran'));
 				$from = $date->format('Y-m-d');
-			}	
-			
+			}
+
 		}else
 		{
 			if($lang == 'fa-IR')
@@ -52,12 +53,12 @@ class DefaultController extends EGController
 				$from = $date->format('Y-m-d');
 			}
 		}
-		
+
 		return $from;
 	}
-	
+
 	private function getEndDate($lang, $end_time = null)
-	{		
+	{
 		if( $end_time == null)
 		{
 			if($lang == 'fa-IR')
@@ -95,7 +96,7 @@ class DefaultController extends EGController
 				$date->setTimestamp($end_date);
 				$to = $date->format('Y-m-d');
 			}
-			
+
 		}
 		return $to;
 	}
@@ -103,17 +104,25 @@ class DefaultController extends EGController
     public function actionIndex($lang = 'fa-IR', $begin_time = null, $end_time = null)
     {
 		Stat::setView('event', 'default', 'index');
-
+		$module = \Yii::$app->getModule('event');
         //$this->layout = '//creative-item';
 		Yii::$app->controller->addLanguageUrl('fa-IR', Yii::$app->urlManager->createUrl(['event', 'lang' => 'fa-IR']), (Yii::$app->controller->language !== 'fa-IR'));
 		Yii::$app->controller->addLanguageUrl('en', Yii::$app->urlManager->createUrl(['event', 'lang' => 'en']), (Yii::$app->controller->language !== 'en'));
-        
+
 		$begin = $this->getBeginDate($this->language, $begin_time);
-		$end = $this->getEndDate($this->language, $end_time); 
+		$end = $this->getEndDate($this->language, $end_time);
 		$event_list = [];
 //		$event = Event::find()->where(['between', 'creation_time', $begin, $end])->all();
-		$event = Event::find()->all();
-		foreach($event as $event_item)
+		$event = Event::find();
+		$countQuery = clone $event;
+
+		$pages = new Pagination(['totalCount' => $countQuery->count()]);
+		$pages->defaultPageSize = $module->page_size;
+		$models = $event->offset($pages->offset)
+	        ->limit($pages->limit)
+	        ->all();
+
+		foreach($models as $event_item)
 		{
 			$translation = EventTranslation::findOne(array('event_id' => $event_item->id, 'language' => $this->language));
 			if($translation)
@@ -131,7 +140,8 @@ class DefaultController extends EGController
 			'event' => $event_list,
 			'from' => $begin,
 			'to' => $end,
-			'language' => $this->language
+			'language' => $this->language,
+			'pages' => $pages
 		]);
     }
 

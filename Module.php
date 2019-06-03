@@ -10,7 +10,8 @@ class Module extends \yii\base\Module
     public $enabled_follow;
     public $enabled_comment;
     public $enabled_rating;
-
+    public $page_size = 10;
+    
     public function init()
     {
         parent::init();
@@ -41,7 +42,7 @@ class Module extends \yii\base\Module
                 'basePath' => __DIR__ . '/messages',
                 //'forceTranslation' => true,
             ];
-        }		
+        }
     }
 	public static function t($category, $message, $params = [], $language = null)
     {
