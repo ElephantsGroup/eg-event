@@ -135,7 +135,9 @@ class DefaultController extends EGController
                 ];
 			}
 		}
-		//var_dump($end); die;
+
+		$this->title = Yii::t('config', 'Company Name') . ' - ' . Yii::t('app', 'Event List');
+
 		return $this->render('index',[
 			'event' => $event_list,
 			'from' => $begin,
@@ -157,6 +159,10 @@ class DefaultController extends EGController
 			throw new NotFoundHttpException('The requested page does not exist.');
 		$model->views++;
 		$model->save();
+
+		$this->title = Yii::t('config', 'Company Name') . ' - ' . $model->translationByLang->title;
+		$this->description = $model->translationByLang->description;
+
         return $this->render('view', [
             'model' => $model,
         ]);

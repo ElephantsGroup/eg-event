@@ -34,8 +34,8 @@ class CatController extends EGController
 				//$date->setTimestamp();
 				$date->setTimezone(new \DateTimezone('Iran'));
 				$from = $date->format('Y-m-d');
-			}	
-			
+			}
+
 		}else
 		{
 			if($lang == 'fa-IR')
@@ -56,12 +56,12 @@ class CatController extends EGController
 				$from = $date->format('Y-m-d');
 			}
 		}
-		
+
 		return $from;
 	}
-	
+
 	private function getEndDate($lang, $end_time = null)
-	{		
+	{
 		if( $end_time == null)
 		{
 			if($lang == 'fa-IR')
@@ -99,7 +99,7 @@ class CatController extends EGController
 				$date->setTimestamp($end_date);
 				$to = $date->format('Y-m-d');
 			}
-			
+
 		}
 		return $to;
 	}
@@ -107,13 +107,13 @@ class CatController extends EGController
     public function actionIndex($lang = 'fa-IR', $begin_time = null, $end_time = null)
     {
 		Stat::setView('event', 'default', 'index');
-		
+
 		//$this->layout = '//creative-item';
 		Yii::$app->controller->addLanguageUrl('fa-IR', Yii::$app->urlManager->createUrl(['event', 'lang' => 'fa-IR']), (Yii::$app->controller->language !== 'fa-IR'));
 		Yii::$app->controller->addLanguageUrl('en', Yii::$app->urlManager->createUrl(['event', 'lang' => 'en']), (Yii::$app->controller->language !== 'en'));
-        
+
 		$begin = $this->getBeginDate($this->language, $begin_time);
-		$end = $this->getEndDate($this->language, $end_time); 
+		$end = $this->getEndDate($this->language, $end_time);
 		$cat_list = [];
 //		$event = Event::find()->where(['between', 'creation_time', $begin, $end])->all();
 		$cat = EventCategory::find()->all();
@@ -129,6 +129,9 @@ class CatController extends EGController
                 ];
 			}
 		}
+
+		$this->title = Yii::t('config', 'Company Name') . ' - ' . Yii::t('app', 'Event Category List');
+
 		return $this->render('index',[
 			'category' => $cat_list,
 			'from' => $begin,
@@ -162,6 +165,9 @@ class CatController extends EGController
                 ];
             }
         }
+
+		$this->title = Yii::t('config', 'Company Name') . ' - ' . Yii::t('app', 'Event Category') . ' - ' . $model->translationByLang->title;
+
         return $this->render('view', [
             'model' => $model,
             'event_list' => $event_list,

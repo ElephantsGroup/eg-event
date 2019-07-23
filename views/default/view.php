@@ -15,7 +15,6 @@ RatingAsset::register($this);
 $module = \Yii::$app->getModule('event');
 
 $lang = Yii::$app->language;
-$this->title = Yii::t('event', 'Event id') . ' ' . $model->id;
 $translation = $model->translationByLang;
 if($translation && $translation->title)
 	$this->title = $translation->title;
@@ -37,16 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="container inner-top-sm inner-bottom classic-blog no-sidebar">
 		<div class="row">
 			<div class="col-md-9 center-block">
-					
+
 				<div class="post">
-				
+
 					<div class="post-content">
 						<div class="post-media">
 							<figure>
 								<img src=" <?= Event::$upload_url . $model->id . '/' . $model->image ?>" alt="">
 							</figure>
 						</div>
-						
+
 						<p class="subtitle">
 							<?php
 								echo ($model->translationByLang ? $model->translationByLang->subtitle : '');
@@ -64,9 +63,9 @@ $this->params['breadcrumbs'][] = $this->title;
 								?>
 							</div>
 						</div>
-						
+
 						<h1 class="post-title"><?= Html::encode($this->title) ?></h1>
-						
+
 						<ul class="post-details">
 							<li class="date">
 							<?php
@@ -74,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									echo Jdf::jdate('d F Y - H:i', (new \DateTime($model->creation_time))->getTimestamp(), '', 'Iran', 'fa-IR');
 								else
 									echo date('M d, Y', strtotime($model->creation_time));
-								
+
 							?>
 							</li>
 							<li class="categories">
@@ -86,10 +85,10 @@ $this->params['breadcrumbs'][] = $this->title;
 								</a>
 							</li>
 							<?php /* echo "<li class='views'>$model->views</li>"; */ ?>
-							
+
 						</ul><!-- /.post-details -->
 						<div class="clearfix"></div>
-						
+
 						<?php
 							echo ($model->translationByLang ? $model->translationByLang->description : '');
 						?>
@@ -105,11 +104,11 @@ $this->params['breadcrumbs'][] = $this->title;
 							echo \elephantsGroup\comment\components\Comments::widget(['item' => $model->id, 'service' => 3]);
 							?>
 						<?php endif;?>
-						
+
 					</div><!-- /.post-content -->
-					
+
 				</div><!-- /.post -->
-				
+
 			</div><!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->
